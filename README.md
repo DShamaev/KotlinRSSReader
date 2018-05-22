@@ -11,17 +11,16 @@ This project showcases the following Architecture Components:
 * LiveData
 * Navigation controller
 
-## Prerequisites
+## Dev environment
 
 * Android studio 3.2 Canary 15 or newer
 
 
 ## Do you want to contribute?
---------------------------
+
 Feel free to report or add any useful feature, I will be glad to improve it with your help.
 
 ## License
--------
 
     Copyright 2017 Shamaev Dmitriy
 
