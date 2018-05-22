@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">RSS Podcast Reader</string>
+    <string name="loading_str">Loading...</string>
+    <string name="cd_news_list">News list</string>
+    <string name="cd_news_name">News headline</string>
+</resources>

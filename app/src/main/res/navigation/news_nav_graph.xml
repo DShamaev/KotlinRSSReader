@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    app:startDestination="@id/newsFragment">
+
+    <fragment
+        android:id="@+id/newsFragment"
+        android:name="com.dmitriyshamaev.kotlinreader.ui.NewsFragment"
+        android:label="NewsFragment" >
+        <action
+            android:id="@+id/action_newsFragment_to_newsDetailsFragment"
+            app:destination="@id/newsDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/newsDetailsFragment"
+        android:name="com.dmitriyshamaev.kotlinreader.ui.NewsDetailsFragment"
+        android:label="NewsDetailsFragment">
+        <argument
+            android:name="newsItemId"
+            android:defaultValue="0"
+            app:type="integer" />
+    </fragment>
+</navigation>
