@@ -1,9 +1,9 @@
 # KotlinRSSReader
-Simple Android RSS reader witten in Kotlin. Based on MVVM and android architecture components
+Simple Android RSS reader written in Kotlin. Based on MVVM and android architecture components
 
 ## Project Goal
 
-Learn to use Kotlin + LiveData + Databinding and test latest Android features
+Learn to use Kotlin + LiveData + Databinding and to be a playground for latest Android features
 
 This project showcases the following Architecture Components:
 * Room
@@ -14,7 +14,6 @@ This project showcases the following Architecture Components:
 ## Dev environment
 
 * Android studio 3.2 Canary 15 or newer
-
 
 ## Do you want to contribute?
 
