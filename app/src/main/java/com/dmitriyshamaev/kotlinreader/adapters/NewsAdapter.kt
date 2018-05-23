@@ -12,13 +12,13 @@ import com.dmitriyshamaev.kotlinreader.R
 import com.dmitriyshamaev.kotlinreader.databinding.NewsListItemBinding
 import com.dmitriyshamaev.kotlinreader.model.NewsItem
 
-class NewsAdapter(val clickListener: (NewsItem) -> Unit): RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
+class NewsAdapter(private val clickListener: (NewsItem) -> Unit): RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
 
     private var mNewsList = listOf<NewsItem>()
     private lateinit var mContext: Context
 
     fun setNewsList(newsList: List<NewsItem>) {
-        if (mNewsList.size == 0) {
+        if (mNewsList.isEmpty()) {
             mNewsList = newsList
             notifyItemRangeInserted(0, newsList.size)
         } else {
@@ -32,13 +32,13 @@ class NewsAdapter(val clickListener: (NewsItem) -> Unit): RecyclerView.Adapter<N
                 }
 
                 override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-                    val old = mNewsList.get(oldItemPosition)
+                    val old = mNewsList[oldItemPosition]
                     val newsItem = newsList[newItemPosition]
                     return old.id === newsItem.id
                 }
 
                 override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-                    val old = mNewsList.get(oldItemPosition)
+                    val old = mNewsList[oldItemPosition]
                     val newsItem = newsList[newItemPosition]
                     return (old.id === newsItem.id
                             && old.title === newsItem.title
@@ -63,7 +63,7 @@ class NewsAdapter(val clickListener: (NewsItem) -> Unit): RecyclerView.Adapter<N
     }
 
     override fun onBindViewHolder(holder: NewsViewHolder, position: Int) {
-        val newsItem = mNewsList.get(position)
+        val newsItem = mNewsList[position]
         holder.binding.newsItem = newsItem
         holder.binding.root.setOnClickListener { clickListener(newsItem) }
         holder.binding.executePendingBindings()
@@ -73,6 +73,6 @@ class NewsAdapter(val clickListener: (NewsItem) -> Unit): RecyclerView.Adapter<N
         }
     }
 
-    class NewsViewHolder(val binding: NewsListItemBinding): android.support.v7.widget.RecyclerView.ViewHolder(binding.root) {}
+    class NewsViewHolder(val binding: NewsListItemBinding): android.support.v7.widget.RecyclerView.ViewHolder(binding.root)
 
 }

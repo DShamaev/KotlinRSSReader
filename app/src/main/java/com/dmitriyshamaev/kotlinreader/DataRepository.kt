@@ -6,7 +6,7 @@ import com.dmitriyshamaev.kotlinreader.model.NewsDatabase
 import com.dmitriyshamaev.kotlinreader.model.NewsItem
 import com.dmitriyshamaev.kotlinreader.network.NewsService
 import com.dmitriyshamaev.kotlinreader.network.xml.RSSTikXmlConverterFactory
-import com.dmitriyshamaev.kotlinreader.util.POJOConvertor
+import com.dmitriyshamaev.kotlinreader.util.POJOConverter
 import retrofit2.Retrofit
 
 
@@ -52,7 +52,7 @@ class DataRepository private constructor(private val mExecutors: AppExecutors,
                 val rss = rssResult.body()
 
                 mExecutors.diskIO().execute {
-                    val newNewsItems = POJOConvertor.toNewsItem(rss!!)
+                    val newNewsItems = POJOConverter.toNewsItem(rss!!)
                     newNewsItems.forEach { item ->
                         mDatabase.newsDao().insert(item)
                     }

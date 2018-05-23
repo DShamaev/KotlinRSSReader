@@ -5,7 +5,7 @@ import android.arch.persistence.room.Room
 import android.arch.persistence.room.RoomDatabase
 import android.content.Context
 
-@Database(entities = arrayOf(NewsItem::class), version = 1, exportSchema = false)
+@Database(entities = [NewsItem::class], version = 1, exportSchema = false)
 abstract class NewsDatabase : RoomDatabase() {
 
     abstract fun newsDao(): NewsDao
@@ -18,7 +18,7 @@ abstract class NewsDatabase : RoomDatabase() {
         fun getInstance(context: Context): NewsDatabase {
             if (INSTANCE == null) {
                 synchronized(NewsDatabase::class) {
-                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
+                    INSTANCE = Room.databaseBuilder(context.applicationContext,
                             NewsDatabase::class.java, DATABASE_NAME)
                             .fallbackToDestructiveMigration()
                             .build()

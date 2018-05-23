@@ -16,7 +16,7 @@ import com.dmitriyshamaev.kotlinreader.viewmodel.NewsListViewModel
 import org.koin.android.ext.android.inject
 
 
-class NewsActivity() : AppCompatActivity() {
+class NewsActivity : AppCompatActivity() {
 
     private val viewModel : NewsListViewModel by inject()
     private val appStorage : AppStorage by inject()
@@ -66,8 +66,8 @@ class NewsActivity() : AppCompatActivity() {
         builder.setView(input)
 
         // Set up the buttons
-        builder.setPositiveButton("OK", DialogInterface.OnClickListener { dialog, which -> viewModel.tryToLoadDataFromNewSource(input.text.toString()) })
-        builder.setNegativeButton("Cancel", DialogInterface.OnClickListener { dialog, which -> dialog.cancel() })
+        builder.setPositiveButton("OK", DialogInterface.OnClickListener { _, _ -> viewModel.tryToLoadDataFromNewSource(input.text.toString()) })
+        builder.setNegativeButton("Cancel", DialogInterface.OnClickListener { dialog, _ -> dialog.cancel() })
 
         builder.show()
         viewModel.tryToLoadDataFromNewSource("")

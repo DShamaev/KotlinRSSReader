@@ -6,7 +6,7 @@ import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
-class POJOConvertor {
+class POJOConverter {
 
     companion object {
         fun toNewsItem(rss: RSS): List<NewsItem> {

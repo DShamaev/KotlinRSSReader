@@ -3,7 +3,7 @@ package com.dmitriyshamaev.kotlinreader.model
 import android.arch.persistence.room.ColumnInfo
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey
-import com.dmitriyshamaev.kotlinreader.util.POJOConvertor
+import com.dmitriyshamaev.kotlinreader.util.POJOConverter
 
 @Entity(tableName = "newsItem")
 data class NewsItem(@PrimaryKey(autoGenerate = true) var id: Long?,
@@ -15,7 +15,7 @@ data class NewsItem(@PrimaryKey(autoGenerate = true) var id: Long?,
                       ) {
     val pubDateString: String
     get() {
-        return POJOConvertor.toDateString(pubDate!!)
+        return POJOConverter.toDateString(pubDate!!)
     }
 }
 

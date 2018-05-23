@@ -21,7 +21,7 @@ class NewsDetailsFragment: Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_news_details, container, false)
 
-        return mBinding.getRoot()
+        return mBinding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
