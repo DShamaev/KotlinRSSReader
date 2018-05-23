@@ -33,14 +33,12 @@ class NewsDetailsFragment: Fragment() {
         val args = NewsDetailsFragmentArgs.fromBundle(arguments)
 
         // Update the list when the data changes
-        viewModel.getNewsItem(args.newsItemId.toLong()).observe(this, object : Observer<NewsItem> {
-            override fun onChanged(newsItem: NewsItem?) {
-                if (newsItem != null) {
-                    mBinding.newsItem = newsItem
-                    mBinding.newsItemDescription.loadData(newsItem.description,"text/html", "utf-8")
-                }
-                mBinding.executePendingBindings()
+        viewModel.getNewsItem(args.newsItemId.toLong()).observe(this, Observer<NewsItem> { newsItem ->
+            if (newsItem != null) {
+                mBinding.newsItem = newsItem
+                mBinding.newsItemDescription.loadData(newsItem.description,"text/html", "utf-8")
             }
+            mBinding.executePendingBindings()
         })
     }
 

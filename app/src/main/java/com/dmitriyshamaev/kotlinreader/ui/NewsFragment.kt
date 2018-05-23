@@ -52,16 +52,14 @@ class NewsFragment: Fragment() {
 
     private fun subscribeUi(viewModel: NewsListViewModel) {
         // Update the list when the data changes
-        viewModel.news.observe(this, object : Observer<List<NewsItem>> {
-            override fun onChanged(newsList: List<NewsItem>?) {
-                if (newsList != null) {
-                    mBinding.isLoading = false
-                    mNewsAdapter.setNewsList(newsList)
-                } else {
-                    mBinding.isLoading = true
-                }
-                mBinding.executePendingBindings()
+        viewModel.news.observe(this, Observer<List<NewsItem>> { newsList ->
+            if (newsList != null) {
+                mBinding.isLoading = false
+                mNewsAdapter.setNewsList(newsList)
+            } else {
+                mBinding.isLoading = true
             }
+            mBinding.executePendingBindings()
         })
     }
 }

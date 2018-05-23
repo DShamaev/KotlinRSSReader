@@ -13,7 +13,7 @@ import retrofit2.Retrofit
 class DataRepository private constructor(private val mExecutors: AppExecutors,
                                          private val mDatabase: NewsDatabase,
                                          private val appStorage: AppStorage) {
-    private val mObservableNews: MediatorLiveData<List<NewsItem>>
+    private val mObservableNews: MediatorLiveData<List<NewsItem>> = MediatorLiveData()
 
     /**
      * Get the list of products from the database and get notified when the data changes.
@@ -22,7 +22,6 @@ class DataRepository private constructor(private val mExecutors: AppExecutors,
         get() = mObservableNews
 
     init {
-        mObservableNews = MediatorLiveData()
 
         mObservableNews.addSource(mDatabase.newsDao().getAll()
         ) { newsItems ->
@@ -51,13 +50,14 @@ class DataRepository private constructor(private val mExecutors: AppExecutors,
             if (rssResult.isSuccessful) {
                 val rss = rssResult.body()
 
-                mExecutors.diskIO().execute {
-                    val newNewsItems = POJOConverter.toNewsItem(rss!!)
-                    newNewsItems.forEach { item ->
-                        mDatabase.newsDao().insert(item)
+                if (rss != null) {
+                    mExecutors.diskIO().execute {
+                        val newNewsItems = POJOConverter.toNewsItem(rss!!)
+                        newNewsItems.forEach { item ->
+                            mDatabase.newsDao().insert(item)
+                        }
                     }
                 }
-
             }
         }
     }

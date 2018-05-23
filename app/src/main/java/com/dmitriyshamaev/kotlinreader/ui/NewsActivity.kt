@@ -1,6 +1,5 @@
 package com.dmitriyshamaev.kotlinreader.ui
 
-import android.content.DialogInterface
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
@@ -66,8 +65,8 @@ class NewsActivity : AppCompatActivity() {
         builder.setView(input)
 
         // Set up the buttons
-        builder.setPositiveButton("OK", DialogInterface.OnClickListener { _, _ -> viewModel.tryToLoadDataFromNewSource(input.text.toString()) })
-        builder.setNegativeButton("Cancel", DialogInterface.OnClickListener { dialog, _ -> dialog.cancel() })
+        builder.setPositiveButton("OK", { _, _ -> viewModel.tryToLoadDataFromNewSource(input.text.toString()) })
+        builder.setNegativeButton("Cancel", { dialog, _ -> dialog.cancel() })
 
         builder.show()
         viewModel.tryToLoadDataFromNewSource("")

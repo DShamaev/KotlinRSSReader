@@ -8,18 +8,17 @@ import com.dmitriyshamaev.kotlinreader.DataRepository
 import com.dmitriyshamaev.kotlinreader.model.NewsItem
 
 class NewsListViewModel(private val repository: DataRepository): ViewModel() {
-    private val mObservableNews: MediatorLiveData<List<NewsItem>>
+    private val mObservableNews: MediatorLiveData<List<NewsItem>> = MediatorLiveData()
 
     val news: LiveData<List<NewsItem>>
         get() = mObservableNews
 
     init {
-        mObservableNews = MediatorLiveData()
         // set by default null, until we get data from the database.
         mObservableNews.value = null
 
         // observe the changes of the products from the database and forward them
-        mObservableNews.addSource(repository.news, Observer<List<NewsItem>> { mObservableNews.setValue(it) })
+        mObservableNews.addSource(repository.news, { mObservableNews.setValue(it) })
 
     }
 
