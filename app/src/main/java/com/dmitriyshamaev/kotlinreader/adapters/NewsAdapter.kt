@@ -68,15 +68,11 @@ class NewsAdapter(val clickListener: (NewsItem) -> Unit): RecyclerView.Adapter<N
         holder.binding.root.setOnClickListener { clickListener(newsItem) }
         holder.binding.executePendingBindings()
 
-        Glide.with(mContext).load(Uri.parse(newsItem.imageURL)).into(holder.binding.newsImage)
-
-        //holder.binding.newsDescriptionWebview.loadData(newsItem.description,"text/html", "utf-8")
-    }
-
-    class NewsViewHolder(val binding: NewsListItemBinding): android.support.v7.widget.RecyclerView.ViewHolder(binding.root) {
-        init {
-
+        if (newsItem.imageURL != null) {
+            Glide.with(mContext).load(Uri.parse(newsItem.imageURL)).into(holder.binding.newsImage)
         }
     }
+
+    class NewsViewHolder(val binding: NewsListItemBinding): android.support.v7.widget.RecyclerView.ViewHolder(binding.root) {}
 
 }

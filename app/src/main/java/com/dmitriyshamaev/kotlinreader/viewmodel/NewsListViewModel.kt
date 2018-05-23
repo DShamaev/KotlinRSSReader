@@ -7,7 +7,7 @@ import android.arch.lifecycle.ViewModel
 import com.dmitriyshamaev.kotlinreader.DataRepository
 import com.dmitriyshamaev.kotlinreader.model.NewsItem
 
-class NewsListViewModel(val repository: DataRepository): ViewModel() {
+class NewsListViewModel(private val repository: DataRepository): ViewModel() {
     private val mObservableNews: MediatorLiveData<List<NewsItem>>
 
     val news: LiveData<List<NewsItem>>
@@ -25,6 +25,14 @@ class NewsListViewModel(val repository: DataRepository): ViewModel() {
 
     fun getNewsItem(id: Long): LiveData<NewsItem> {
         return repository.loadNewsItem(id)
+    }
+
+    fun updateDataFromNetwork() {
+        repository.loadNewsItemsFromNetwork()
+    }
+
+    fun tryToLoadDataFromNewSource(url: String) {
+        repository.loadNewsItemsFromUrl(url)
     }
 
 }

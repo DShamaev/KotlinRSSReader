@@ -50,8 +50,6 @@ class RSSChannel {
         var author: String? = null//Email address of the author of the item. More.	oprah@oxygen.net
         @PropertyElement
         var pubDate: String? = null//	Indicates when the item was published. More.	Sun, 19 May 2002 15:21:36 GMT
-        @PropertyElement
-        var source: String? = null//	The RSS channel that the item came from. More.
         @Element(name = "itunes:image")
         var imageLink: ItemImage? = null//	The RSS channel that the item came from. More.
 
@@ -62,7 +60,6 @@ class RSSChannel {
                     ", description='" + description + '\''.toString() +
                     ", author='" + author + '\''.toString() +
                     ", pubDate='" + pubDate + '\''.toString() +
-                    ", source='" + source + '\''.toString() +
                     '}'.toString()
         }
     }

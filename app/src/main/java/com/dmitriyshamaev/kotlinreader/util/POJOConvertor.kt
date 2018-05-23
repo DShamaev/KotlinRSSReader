@@ -18,7 +18,7 @@ class POJOConvertor {
                         description = item.description,
                         pubDate = toUnixTimeStamp(item.pubDate!!),
                         imageURL = item.imageLink?.link,
-                        link = ""))
+                        link = item.link))
             }
             return newsItems.toList()
         }

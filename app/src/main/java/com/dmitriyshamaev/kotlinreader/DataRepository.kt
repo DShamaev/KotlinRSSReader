@@ -9,8 +9,10 @@ import com.dmitriyshamaev.kotlinreader.network.xml.RSSTikXmlConverterFactory
 import com.dmitriyshamaev.kotlinreader.util.POJOConvertor
 import retrofit2.Retrofit
 
+
 class DataRepository private constructor(private val mExecutors: AppExecutors,
-                                         private val mDatabase: NewsDatabase) {
+                                         private val mDatabase: NewsDatabase,
+                                         private val appStorage: AppStorage) {
     private val mObservableNews: MediatorLiveData<List<NewsItem>>
 
     /**
@@ -34,11 +36,20 @@ class DataRepository private constructor(private val mExecutors: AppExecutors,
         return mDatabase.newsDao().getNewsEntity(newsId)
     }
 
+    fun loadNewsItemsFromUrl(url: String) {
+        if (url === "") return
+        if (appStorage.rssUrl == url) return
+
+        removeAllItems()
+        appStorage.rssUrl = url
+        loadNewsItemsFromNetwork()
+    }
+
     fun loadNewsItemsFromNetwork() {
         mExecutors.networkIO().execute {
-            var rssResult = provideNewsService().getNews().execute()
+            val rssResult = provideNewsService().getNews(appStorage.rssUrl).execute()
             if (rssResult.isSuccessful) {
-                var rss = rssResult.body()
+                val rss = rssResult.body()
 
                 mExecutors.diskIO().execute {
                     val newNewsItems = POJOConvertor.toNewsItem(rss!!)
@@ -51,9 +62,15 @@ class DataRepository private constructor(private val mExecutors: AppExecutors,
         }
     }
 
+    private fun removeAllItems() {
+        mExecutors.diskIO().execute {
+            mDatabase.newsDao().deleteAll()
+        }
+    }
+
     private fun provideNewsService(): NewsService {
         return Retrofit.Builder()
-                .baseUrl("http://feeds.rucast.net")
+                .baseUrl("http://google.com")
                 .addConverterFactory(RSSTikXmlConverterFactory.create())
                 .build()
                 .create(NewsService::class.java)
@@ -63,11 +80,11 @@ class DataRepository private constructor(private val mExecutors: AppExecutors,
 
         private var INSTANCE: DataRepository? = null
 
-        fun getInstance(executors: AppExecutors, database: NewsDatabase): DataRepository {
+        fun getInstance(executors: AppExecutors, database: NewsDatabase, appStorage: AppStorage): DataRepository {
             if (INSTANCE == null) {
                 synchronized(DataRepository::class.java) {
                     if (INSTANCE == null) {
-                        INSTANCE = DataRepository(executors, database)
+                        INSTANCE = DataRepository(executors, database, appStorage)
                     }
                 }
             }
