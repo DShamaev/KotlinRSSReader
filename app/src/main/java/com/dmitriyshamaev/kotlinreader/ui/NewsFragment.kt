@@ -55,7 +55,7 @@ class NewsFragment: Fragment() {
         viewModel.news.observe(this, Observer<List<NewsItem>> { newsList ->
             if (newsList != null) {
                 mBinding.isLoading = false
-                mNewsAdapter.setNewsList(newsList)
+                mNewsAdapter.submitList(newsList)
             } else {
                 mBinding.isLoading = true
             }
