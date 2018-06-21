@@ -1,9 +1,9 @@
 package com.dmitriyshamaev.kotlinreader.ui
 
-import android.arch.lifecycle.Observer
-import android.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
+import androidx.databinding.DataBindingUtil
 import android.os.Bundle
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +13,7 @@ import com.dmitriyshamaev.kotlinreader.model.NewsItem
 import com.dmitriyshamaev.kotlinreader.viewmodel.NewsListViewModel
 import org.koin.android.ext.android.inject
 
-class NewsDetailsFragment: Fragment() {
+class NewsDetailsFragment: androidx.fragment.app.Fragment() {
 
     private lateinit var mBinding: FragmentNewsDetailsBinding
     private val viewModel : NewsListViewModel by inject()

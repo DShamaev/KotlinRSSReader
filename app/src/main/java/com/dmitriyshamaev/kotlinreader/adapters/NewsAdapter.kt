@@ -1,10 +1,10 @@
 package com.dmitriyshamaev.kotlinreader.adapters
 
 import android.content.Context
-import android.databinding.DataBindingUtil
+import androidx.databinding.DataBindingUtil
 import android.net.Uri
-import android.support.v7.recyclerview.extensions.ListAdapter
-import android.support.v7.util.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
+import androidx.recyclerview.widget.DiffUtil
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
@@ -53,6 +53,6 @@ class NewsAdapter(private val clickListener: (NewsItem) -> Unit): ListAdapter<Ne
         }
     }
 
-    class NewsViewHolder(val binding: NewsListItemBinding): android.support.v7.widget.RecyclerView.ViewHolder(binding.root)
+    class NewsViewHolder(val binding: NewsListItemBinding): androidx.recyclerview.widget.RecyclerView.ViewHolder(binding.root)
 
 }

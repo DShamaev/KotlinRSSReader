@@ -1,9 +1,8 @@
 package com.dmitriyshamaev.kotlinreader.viewmodel
 
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.MediatorLiveData
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MediatorLiveData
+import androidx.lifecycle.ViewModel
 import com.dmitriyshamaev.kotlinreader.DataRepository
 import com.dmitriyshamaev.kotlinreader.model.NewsItem
 
@@ -18,7 +17,7 @@ class NewsListViewModel(private val repository: DataRepository): ViewModel() {
         mObservableNews.value = null
 
         // observe the changes of the products from the database and forward them
-        mObservableNews.addSource(repository.news, { mObservableNews.setValue(it) })
+        mObservableNews.addSource(repository.news) { mObservableNews.setValue(it) }
 
     }
 

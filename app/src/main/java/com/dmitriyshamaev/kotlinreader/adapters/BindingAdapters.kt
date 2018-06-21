@@ -1,6 +1,6 @@
 package com.dmitriyshamaev.kotlinreader.adapters
 
-import android.databinding.BindingAdapter
+import androidx.databinding.BindingAdapter
 import android.view.View
 
 object BindingAdapters {

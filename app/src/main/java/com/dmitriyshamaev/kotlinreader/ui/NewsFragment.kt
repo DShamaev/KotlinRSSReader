@@ -1,13 +1,14 @@
 package com.dmitriyshamaev.kotlinreader.ui
 
-import android.arch.lifecycle.Observer
-import android.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
+import androidx.databinding.DataBindingUtil
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v7.widget.LinearLayoutManager
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
 import com.dmitriyshamaev.kotlinreader.R
 import com.dmitriyshamaev.kotlinreader.adapters.NewsAdapter
@@ -17,10 +18,6 @@ import com.dmitriyshamaev.kotlinreader.viewmodel.NewsListViewModel
 import org.koin.android.ext.android.inject
 
 class NewsFragment: Fragment() {
-
-    companion object {
-        val TAG = "NewsFragment"
-    }
 
     private lateinit var mNewsAdapter: NewsAdapter
 
@@ -42,7 +39,7 @@ class NewsFragment: Fragment() {
         linearLayoutManager = LinearLayoutManager(this.context)
         mBinding.newsList.layoutManager = linearLayoutManager
 
-        return mBinding.getRoot()
+        return mBinding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
