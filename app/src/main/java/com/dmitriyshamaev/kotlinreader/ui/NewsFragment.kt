@@ -31,8 +31,7 @@ class NewsFragment: Fragment() {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_news, container, false)
 
         mNewsAdapter = NewsAdapter { newsItem ->
-            val directions = NewsFragmentDirections.action_newsFragment_to_newsDetailsFragment()
-            directions.setNewsItemId(newsItem.id!!.toInt())
+            val directions = NewsFragmentDirections.actionNewsFragmentToNewsDetailsFragment(newsItemId = newsItem.id!!.toInt())
             NavHostFragment.findNavController(this).navigate(directions)
         }
         mBinding.newsList.adapter = mNewsAdapter

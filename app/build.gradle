@@ -1,12 +1,8 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
-
 apply plugin: 'kotlin-kapt'
-
-apply plugin: 'androidx.navigation.safeargs'
+apply plugin: 'androidx.navigation.safeargs.kotlin'
 
 android {
     compileSdkVersion 28
@@ -19,7 +15,7 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -33,23 +29,24 @@ android {
 }
 
 ext {
-    support_lib_version = '1.0.0-alpha3'
-    arch_lifecycle_version = '2.0.0-alpha1'
-    room_version = '1.1.0'
-    glide_version = "4.7.1"
+    support_appcompat_version = '1.0.2'
+    support_lib_version = '1.0.0'
+    arch_lifecycle_version = '2.0.0'
+    room_version = '2.0.0'
+    glide_version = "4.9.0"
     tikxml_version='0.8.13'
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
-    implementation "androidx.appcompat:appcompat:$support_lib_version"
-    implementation "androidx.fragment:fragment:$support_lib_version"
+    implementation "androidx.appcompat:appcompat:$support_appcompat_version"
+    implementation "androidx.fragment:fragment-ktx:$support_lib_version"
     implementation "androidx.recyclerview:recyclerview:$support_lib_version"
 
     implementation "androidx.lifecycle:lifecycle-extensions:$arch_lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-common-java8:$arch_lifecycle_version"
-    implementation 'android.arch.navigation:navigation-fragment-ktx:1.0.0-alpha02'
+    implementation 'android.arch.navigation:navigation-fragment-ktx:1.0.0'
 
     //Room
     implementation "androidx.room:room-runtime:$arch_lifecycle_version"
@@ -63,7 +60,7 @@ dependencies {
     implementation 'org.koin:koin-android-architecture:0.9.2'
 
     //Retrofit
-    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.5.0'
 
     //XML
     implementation "com.tickaroo.tikxml:annotation:$tikxml_version"
@@ -74,6 +71,6 @@ dependencies {
     androidTestImplementation "junit:junit:4.12"
     androidTestImplementation "androidx.room:room-testing:$arch_lifecycle_version"
     androidTestImplementation "androidx.arch.core:core-testing:$arch_lifecycle_version"
-    androidTestImplementation "androidx.test:runner:1.1.0-alpha3"
-    androidTestImplementation "androidx.test:rules:1.1.0-alpha3"
+    androidTestImplementation "androidx.test:runner:1.1.1"
+    androidTestImplementation "androidx.test:rules:1.1.1"
 }

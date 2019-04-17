@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.navArgs
 import com.dmitriyshamaev.kotlinreader.R
 import com.dmitriyshamaev.kotlinreader.databinding.FragmentNewsDetailsBinding
 import com.dmitriyshamaev.kotlinreader.model.NewsItem
@@ -30,7 +31,7 @@ class NewsDetailsFragment: androidx.fragment.app.Fragment() {
     }
 
     private fun subscribeUi(viewModel: NewsListViewModel) {
-        val args = NewsDetailsFragmentArgs.fromBundle(arguments)
+        val args = NewsDetailsFragmentArgs.fromBundle(arguments!!)
 
         // Update the list when the data changes
         viewModel.getNewsItem(args.newsItemId.toLong()).observe(this, Observer<NewsItem> { newsItem ->
